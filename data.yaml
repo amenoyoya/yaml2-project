@@ -1,18 +1,138 @@
 ---
-receipt:     Oz-Ware Purchase Invoice
-date:        2012-08-06
-customer:
-  first_name:   Dorothy
-  family_name:  Gale
-
-items:
-  - part_no:   A4786
-    descrip:   Water Bucket (Filled)
-    price:     1.47
-    quantity:  4
-
-  - part_no:   E1628
-    descrip:   High Heeled "Ruby" Slippers
-    size:      8
-    price:     133.7
-    quantity:  1
+type: dir
+path: project
+children:
+  - type: dir
+    path: public
+    children:
+      - type: file
+        path: index.html
+        content: |
+          <!DOCTYPE html>
+          <html lang="ja">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          </head>
+          <body>
+              <div id="app"></div>
+              <script src="./index.js"></script>
+          </body>
+          </html>        
+  - type: dir
+    path: src
+    children:
+      - type: file
+        path: App.vue
+        content: |
+          <template>
+            <section>
+              <b-collapse :open="false">
+                <button class="button is-primary" slot="trigger">Click me!</button>
+                <div class="notification">
+                  <div class="content">
+                    <h3>Subtitle</h3>
+                    <p>Hello, world</p>
+                  </div>
+                </div>
+              </b-collapse>
+            </section>
+          </template>
+      - type: file
+        path: index.js
+        content: |
+          import Vue from 'vue'
+          import App from './App'
+          import 'babel-polyfill'
+          import Buefy from 'buefy'
+          import 'buefy/dist/buefy.css'
+          
+          Vue.use(Buefy)
+          
+          new Vue({
+            el: '#app', // Vueでマウントする要素
+            render: h => h(App), // App.vue をレンダリング
+          })
+  - type: file
+    path: webpack.config.js
+    content: |
+      const path = require('path')
+      const VueLoaderPlugin = require('vue-loader/lib/plugin')
+      
+      module.exports = {
+        mode: 'development',
+        entry: './src/index.js',
+        output: {
+          filename: 'index.js',
+          path: path.join(__dirname, 'public')
+        },
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              exclude: /node_modules/,
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env']
+                  }
+                }
+              ]
+            },
+            {
+              test: /\.vue$/,
+              use: [
+                {
+                  loader: "vue-loader",
+                },
+              ],
+            },
+            {
+              test: /\.css$/,
+              use: ['style-loader', 'css-loader']
+            },
+            {
+              test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+              use: [{
+                loader: 'url-loader?mimetype=image/svg+xml'
+              }],
+            },
+            {
+              test: /\.(ttf|eot|woff|woff2)(\d+)?(\?v=\d+\.\d+\.\d+)?$/,
+              use: [{
+                loader: 'url-loader?mimetype=application/font-woff'
+              }],
+            },
+          ]
+        },
+        resolve: {
+          extensions: [".js", ".vue"],
+          modules: ["node_modules"],
+          alias: {
+            vue$: 'vue/dist/vue.esm.js',
+          },
+        },
+        plugins: [new VueLoaderPlugin()],
+      }
+  - type: file
+    path: package.json
+    content: |
+      {
+        "license": "MIT",
+        "dependencies": {
+          "@babel/core": "^7.7.7",
+          "@babel/preset-env": "^7.7.7",
+          "babel-loader": "^8.0.6",
+          "babel-polyfill": "^6.26.0",
+          "buefy": "^0.8.9",
+          "css-loader": "^3.4.1",
+          "style-loader": "^1.1.2",
+          "vue": "^2.6.11",
+          "vue-loader": "^15.8.3",
+          "vue-template-compiler": "^2.6.11",
+          "webpack": "^4.41.5",
+          "webpack-cli": "^3.3.10"
+        }
+      }
