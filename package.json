@@ -1,0 +1,11 @@
+{
+  "name": "yaml2-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:amenoyoya/yaml2-project.git",
+  "author": "amenoyoya <mtyswe3@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.13.1"
+  }
+}
