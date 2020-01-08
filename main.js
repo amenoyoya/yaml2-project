@@ -17,7 +17,13 @@ app.on('activate', function() {
 
 // ウィンドウを作成してコンテンツを読み込む
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+    width: 800, height: 600,
+    // Electron 5.0.0 以降は nodeIntegration を有効化しないと Node.js を内部で実行できない
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
   mainWindow.loadURL(url.format({ // 読み込むコンテンツを指定
     pathname: path.join(__dirname, 'public', 'index.html'),
     protocol: 'file:',

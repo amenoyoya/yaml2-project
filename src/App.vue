@@ -1,15 +1,5 @@
 <template>
   <section>
-    <b-collapse :open="false">
-      <button class="button is-primary" slot="trigger">Click me!</button>
-      <div class="notification">
-        <div class="content">
-          <h3>Subtitle</h3>
-          <p>Hello, world</p>
-        </div>
-      </div>
-    </b-collapse>
-
     <!-- Draggable -->
     <tree :data="animals" draggable="draggable" crossTree="crossTree" class="tree">
       <div slot-scope="{data, store, vm}" :class="data.draggable? 'draggable': ''">
@@ -25,10 +15,16 @@
         </span>
       </div>
     </tree>
+
+    <!-- Execute -->
+    <button class="button is-primary" @click="createYamlFile">YAMLファイル作成</button>
   </section>
 </template>
 
 <script>
+// babel-polyfill を import しないと async, await が使えない
+import 'babel-polyfill'
+
 const animals = [
   { name: '/', draggable: false, droppable: true, children: [
     { emoji: '🐄', name: 'うし', draggable: true, droppable: false },
@@ -48,6 +44,12 @@ export default {
       animals: animals,
     }
   },
+  methods: {
+    async createYamlFile() {
+      console.log(this.animals.__ob__.value)
+      await saveYamlFile('./saved.yaml', this.animals.__ob__.value)
+    }
+  }
 }
 </script>
 
