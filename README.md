@@ -9,5 +9,9 @@ Create project from yaml code
 $ yarn init -y
 
 # install packages
-$ yarn js-yaml
+$ yarn add  js-yaml electron webpack webpack-cli \
+            babel-loader @babel/core @babel/preset-env babel-polyfill \
+            vue vue-loader vue-template-compiler \
+            css-loader style-loader buefy \
+            vue-draggable-nested-tree
 ```
