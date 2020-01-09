@@ -14,4 +14,7 @@ $ yarn add  js-yaml electron webpack webpack-cli \
             vue vue-loader vue-template-compiler \
             css-loader style-loader buefy \
             vue-draggable-nested-tree
+
+# install concurrently package: enable parallel npm scripts
+$ yarn add  concurrently
 ```
