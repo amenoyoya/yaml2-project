@@ -5,33 +5,6 @@ const path = require('path')
 const fs = require('fs')
 const yaml = require('js-yaml')
 
-// 循環参照を解決しながらJSON文字列化
-const safeJsonify = (obj) => {
-  function fix() {
-    //　Object||ArrayならリストにINして循環参照チェック
-    var checkList = [];
-    return (key,value) => {
-      // 初回用
-      if (key === '') {
-        checkList.push(value)
-        return value
-      }
-      // Node,Elementの類はカット
-      if (value instanceof Node) {
-          return undefined
-      }
-      // Object,Arrayなら循環参照チェック
-      if (typeof value === 'object' && value !== null) {
-          return checkList.every((v, i, a) => {
-              return value !== v
-          }) ? value: undefined
-      }
-      return value
-    }
-  }
-  return JSON.stringify(obj, fix)
-}
-
 // yaml file => json object
 const loadYamlFile = (filename) => {
   return yaml.safeLoad(fs.readFileSync(filename, 'utf8'))
@@ -39,7 +12,6 @@ const loadYamlFile = (filename) => {
 
 // json object => yaml file
 const saveYamlFile = (filename, obj) => {
-  console.log(safeJsonify(obj))
   return fs.writeFileSync(filename, yaml.dump(obj), 'utf8')
 }
 

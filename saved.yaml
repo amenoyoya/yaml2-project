@@ -1,0 +1,56 @@
+- open: true
+  active: false
+  draggable: false
+  droppable: true
+  emoji: !<tag:yaml.org,2002:js/undefined> ''
+  name: /
+  children:
+    - open: true
+      active: false
+      draggable: true
+      droppable: false
+      emoji: "\U0001F404"
+      name: うし
+      children: []
+    - open: true
+      active: false
+      draggable: true
+      droppable: false
+      emoji: "\U0001F415"
+      name: いぬ
+      children: []
+    - open: true
+      active: false
+      draggable: true
+      droppable: false
+      emoji: "\U0001F408"
+      name: ねこ
+      children: []
+    - open: true
+      active: false
+      draggable: true
+      droppable: true
+      emoji: "\U0001F413"
+      name: にわとり
+      children:
+        - open: true
+          active: false
+          draggable: true
+          droppable: false
+          emoji: "\U0001F424"
+          name: ひよこ兄
+          children: []
+        - open: true
+          active: false
+          draggable: true
+          droppable: false
+          emoji: "\U0001F424"
+          name: ひよこ弟
+          children: []
+    - open: true
+      active: false
+      draggable: true
+      droppable: false
+      emoji: "\U0001F416"
+      name: ぶた
+      children: []

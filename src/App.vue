@@ -38,6 +38,23 @@ const animals = [
   ]}
 ]
 
+// NestedTreeデータを通常のオブジェクト配列に変換
+const stripData = (array) => {
+  const res = []
+  for (const data of array) {
+    res.push({
+      open: data.open,
+      active: data.active,
+      draggable: data.draggable,
+      droppable: data.droppable,
+      emoji: data.emoji,
+      name: data.name,
+      children: stripData(data.children)
+    })
+  }
+  return res
+}
+
 export default {
   data() {
     return {
@@ -46,8 +63,9 @@ export default {
   },
   methods: {
     async createYamlFile() {
-      console.log(this.animals.__ob__.value)
-      await saveYamlFile('./saved.yaml', this.animals.__ob__.value)
+      const animals = stripData(this.animals)
+      console.log(JSON.stringify(animals))
+      await saveYamlFile('./saved.yaml', animals)
     }
   }
 }
