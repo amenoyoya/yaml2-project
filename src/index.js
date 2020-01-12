@@ -14,6 +14,13 @@ Vue.use(Buefy)
 import {DraggableTree} from 'vue-draggable-nested-tree';
 Vue.component('tree', DraggableTree);
 
+// Vue警告無視
+Vue.config.warnHandler = function (msg, vm, trace) {
+  msg = null;
+  vm = null;
+  trace = null;
+}
+
 new Vue({
   el: '#app', // Vueでマウントする要素
   render: h => h(App), // App.vue をレンダリング

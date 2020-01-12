@@ -2,41 +2,41 @@
   active: false
   draggable: true
   droppable: true
-  name: 新規ディレクトリ
+  name: /
   children:
     - open: true
       active: false
       draggable: true
       droppable: true
-      name: 新規ディレクトリ
+      name: home
       children:
         - open: true
           active: false
           draggable: true
-          droppable: false
-          name: 新規ファイル
-          children: []
-    - open: true
-      active: false
-      draggable: true
-      droppable: false
-      name: 新規ファイル
-      children: []
-- open: true
-  active: false
-  draggable: true
-  droppable: true
-  name: 新規ディレクトリ
-  children:
-    - open: true
-      active: false
-      draggable: true
-      droppable: false
-      name: 新規ファイル
-      children: []
-    - open: true
-      active: false
-      draggable: true
-      droppable: false
-      name: 新規ファイル
-      children: []
+          droppable: true
+          name: user
+          children:
+            - open: true
+              active: false
+              draggable: true
+              droppable: true
+              name: .ssh
+              children:
+                - open: true
+                  active: false
+                  draggable: true
+                  droppable: false
+                  name: config
+                  children: []
+                - open: true
+                  active: false
+                  draggable: true
+                  droppable: false
+                  name: authorized_keys
+                  children: []
+            - open: true
+              active: false
+              draggable: true
+              droppable: false
+              name: .bashrc
+              children: []

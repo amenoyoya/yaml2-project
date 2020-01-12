@@ -39,7 +39,7 @@
             <span>
               <i v-if="data.droppable" class="fas fa-folder"></i>
               <i v-else class="fas fa-file"></i>
-              {{data.name}}
+              <input type="text" v-model="data.name" onClick="this.select()" />
             </span>
           </div>
         </tree>
@@ -77,6 +77,10 @@ export default {
   },
 
   methods: {
+    log(message) {
+      console.log(message)
+    },
+
     createNewDir() {
       this.files.push({name: '新規ディレクトリ', draggable: true, droppable: true})
     },
