@@ -1,42 +1,56 @@
 <template>
   <section>
-    <!-- Draggable -->
-    <tree :data="animals" draggable="draggable" crossTree="crossTree" class="tree">
-      <div slot-scope="{data, store, vm}" :class="data.draggable? 'draggable': ''">
-        <template v-if="!data.isDragPlaceHolder">
-          <b v-if="data.children && data.children.length" @click="store.toggleOpen(data)">
-            <a><i :class="'far ' + (data.open ? 'fa-minus-square' : 'fa-plus-square')"></i>&nbsp;</a>
-          </b>
-        </template>
-        <span>
-          <i v-if="data.droppable" class="fas fa-folder"></i>
-          <i v-else class="fas fa-file"></i>
-          {{data.emoji}} {{data.name}}
-        </span>
+    <div class="columns">
+      <div class="column">
+        <b-menu>
+          <b-menu-list label="Menu">
+            <b-menu-item
+              icon-pack="fas" icon="cog"
+              :active="isMenuActive"
+              :expanded="isMenuActive"
+              @click="isMenuActive = !isMenuActive"
+            >
+              <template slot="label" slot-scope="props">
+                Control
+                <b-icon
+                    class="is-pulled-right"
+                    pack="fas"
+                    :icon="props.expanded ? 'chevron-down' : 'chevron-up'">
+                </b-icon>
+              </template>
+              <b-menu-item @click="createNewDir" label="新規ディレクトリ"></b-menu-item>
+              <b-menu-item @click="createNewFile" label="新規ファイル"></b-menu-item>
+            </b-menu-item>
+          </b-menu-list>
+          <b-menu-list label="Actions">
+            <b-menu-item @click="createYamlFile" label="YAMLファイル作成"></b-menu-item>
+          </b-menu-list>
+        </b-menu>
       </div>
-    </tree>
 
-    <!-- Execute -->
-    <button class="button is-primary" @click="createYamlFile">YAMLファイル作成</button>
+      <div class="column">
+        <tree :data="files" draggable="draggable" crossTree="crossTree" class="tree">
+          <div slot-scope="{data, store, vm}" :class="data.draggable? 'draggable': ''">
+            <template v-if="!data.isDragPlaceHolder">
+              <b v-if="data.children && data.children.length" @click="store.toggleOpen(data)">
+                <a><i :class="'far ' + (data.open ? 'fa-minus-square' : 'fa-plus-square')"></i>&nbsp;</a>
+              </b>
+            </template>
+            <span>
+              <i v-if="data.droppable" class="fas fa-folder"></i>
+              <i v-else class="fas fa-file"></i>
+              {{data.name}}
+            </span>
+          </div>
+        </tree>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 // babel-polyfill を import しないと async, await が使えない
 import 'babel-polyfill'
-
-const animals = [
-  { name: '/', draggable: false, droppable: true, children: [
-    { emoji: '🐄', name: 'うし', draggable: true, droppable: false },
-    { emoji: '🐕', name: 'いぬ', draggable: true, droppable: false },
-    { emoji: '🐈', name: 'ねこ', draggable: true, droppable: false },
-    { emoji: '🐓', name: 'にわとり', draggable: true, droppable: true, children: [
-      { emoji: '🐤', name: 'ひよこ兄', draggable: true, droppable: false },
-      { emoji: '🐤', name: 'ひよこ弟', draggable: true, droppable: false },
-    ]},
-    { emoji:'🐖', name: 'ぶた', draggable: true, droppable: false }
-  ]}
-]
 
 // NestedTreeデータを通常のオブジェクト配列に変換
 const stripData = (array) => {
@@ -47,7 +61,6 @@ const stripData = (array) => {
       active: data.active,
       draggable: data.draggable,
       droppable: data.droppable,
-      emoji: data.emoji,
       name: data.name,
       children: stripData(data.children)
     })
@@ -58,15 +71,26 @@ const stripData = (array) => {
 export default {
   data() {
     return {
-      animals: animals,
+      isMenuActive: true,
+      files: [],
     }
   },
+
   methods: {
+    createNewDir() {
+      this.files.push({name: '新規ディレクトリ', draggable: true, droppable: true})
+    },
+
+    createNewFile() {
+      this.files.push({name: '新規ファイル', draggable: true, droppable: false})
+    },
+
     async createYamlFile() {
-      const animals = stripData(this.animals)
-      console.log(JSON.stringify(animals))
-      await saveYamlFile('./saved.yaml', animals)
-    }
+      const files = stripData(this.files)
+      console.log(JSON.stringify(files))
+      await saveYamlFile('./saved.yaml', files)
+      window.alert('saved.yaml に保存しました')
+    },
   }
 }
 </script>
