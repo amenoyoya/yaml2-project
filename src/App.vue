@@ -32,6 +32,7 @@
         <tree :data="files" draggable="draggable" crossTree="crossTree" class="tree">
           <div slot-scope="{data, store, vm}" :class="data.draggable? 'draggable': ''">
             <template v-if="!data.isDragPlaceHolder">
+              <!-- children 要素を持つデータ: トグル機能 -->
               <b v-if="data.children && data.children.length" @click="store.toggleOpen(data)">
                 <a><i :class="'far ' + (data.open ? 'fa-minus-square' : 'fa-plus-square')"></i>&nbsp;</a>
               </b>
@@ -39,6 +40,11 @@
             <span>
               <i v-if="data.droppable" class="fas fa-folder"></i>
               <i v-else class="fas fa-file"></i>
+              <!-- 編集アイコン -->
+              <b-button v-if="!data.droppable" class="is-primary" size="is-small" @click="fileEditModal(data)">
+                <i class="fas fa-edit"></i>
+              </b-button>
+              <!-- ファイル名変更用に input でファイル名表示 -->
               <input type="text" v-model="data.name" onClick="this.select()" />
             </span>
           </div>
@@ -52,6 +58,9 @@
 // babel-polyfill を import しないと async, await が使えない
 import 'babel-polyfill'
 
+// 各コンポーネント import
+import FileEditModal from './FileEditModal'
+
 // NestedTreeデータを通常のオブジェクト配列に変換
 const stripData = (array) => {
   const res = []
@@ -62,6 +71,7 @@ const stripData = (array) => {
       draggable: data.draggable,
       droppable: data.droppable,
       name: data.name,
+      content: data.content || '',
       children: stripData(data.children)
     })
   }
@@ -77,16 +87,25 @@ export default {
   },
 
   methods: {
-    log(message) {
-      console.log(message)
-    },
-
     createNewDir() {
       this.files.push({name: '新規ディレクトリ', draggable: true, droppable: true})
     },
 
     createNewFile() {
-      this.files.push({name: '新規ファイル', draggable: true, droppable: false})
+      this.files.push({name: '新規ファイル', content: '', draggable: true, droppable: false})
+    },
+
+    fileEditModal(data) {
+      this.$buefy.modal.open({
+        parent: this,
+        props: {
+          data: data,
+        },
+        component: FileEditModal,
+        hasModalCard: true,
+        fullScreen: true,
+        trapFocus: true
+      })
     },
 
     async createYamlFile() {

@@ -2,41 +2,15 @@
   active: false
   draggable: true
   droppable: true
-  name: /
+  name: プロジェクト
+  content: ''
   children:
     - open: true
       active: false
       draggable: true
-      droppable: true
-      name: home
-      children:
-        - open: true
-          active: false
-          draggable: true
-          droppable: true
-          name: user
-          children:
-            - open: true
-              active: false
-              draggable: true
-              droppable: true
-              name: .ssh
-              children:
-                - open: true
-                  active: false
-                  draggable: true
-                  droppable: false
-                  name: config
-                  children: []
-                - open: true
-                  active: false
-                  draggable: true
-                  droppable: false
-                  name: authorized_keys
-                  children: []
-            - open: true
-              active: false
-              draggable: true
-              droppable: false
-              name: .bashrc
-              children: []
+      droppable: false
+      name: test
+      content: |-
+        【動作確認】
+        このファイルは test です
+      children: []
