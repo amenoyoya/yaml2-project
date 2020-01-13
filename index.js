@@ -7,6 +7,11 @@ const loadYamlFile = (filename) => {
   return yaml.safeLoad(fs.readFileSync(filename, 'utf8'))
 }
 
+// json object => yaml file
+const saveYamlFile = (filename, obj) => {
+  return fs.writeFileSync(filename, yaml.dump(obj), 'utf8')
+}
+
 // callback functions
 const procs = {
   // create directory
@@ -39,9 +44,15 @@ const createProject = (obj, cur='./') => {
   }
 }
 
-try {
+/*try {
   const data = loadYamlFile(path.join(__dirname, 'data.yaml'))
   createProject(data)
 } catch (err) {
   console.error(err.message)
+}*/
+const data = {
+  hello() {
+    console.log('Hello, world')
+  }
 }
+saveYamlFile('test.yaml', data)
