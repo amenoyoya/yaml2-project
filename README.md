@@ -17,4 +17,7 @@ $ yarn add  js-yaml electron webpack webpack-cli \
 
 # install concurrently package: enable parallel npm scripts
 $ yarn add  concurrently
+
+# install vue-diagrams
+$ yarn add vue-diagrams
 ```

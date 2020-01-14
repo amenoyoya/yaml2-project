@@ -21,6 +21,10 @@ Vue.config.warnHandler = function (msg, vm, trace) {
   trace = null;
 }
 
+// NestedTreeコンポーネント
+import NestedTree from './components/NestedTree'
+Vue.component('nested-tree', NestedTree)
+
 new Vue({
   el: '#app', // Vueでマウントする要素
   render: h => h(App), // App.vue をレンダリング
