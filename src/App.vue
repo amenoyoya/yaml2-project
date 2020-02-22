@@ -1,48 +1,54 @@
 <template>
-  <section class="section">
-    <div id="rete"></div>
+  <section style="width:100%; height:100%">
+    <canvas id='mycanvas' width='1024' height='720' style='border: 1px solid'></canvas>
   </section>
 </template>
 
 <script>
-import Rete from 'rete';
-import ConnectionPlugin from 'rete-connection-plugin';
-import VueRenderPlugin from 'rete-vue-render-plugin';
+import { LiteGraph, LGraph, LGraphCanvas, LGraphNode } from './litegraph/litegraph';
+import './litegraph/litegraph.css';
 
-// 数値ノード
-class NumComponent extends Rete.Component {
+/**
+ * 自作ノード
+ */
+class MyNode extends LGraphNode {
   constructor() {
-    super('Number');
+    super('自作ノード');
+    this.title = 'インクリメント';
+    this.addInput('入力', 'number');
+    this.addOutput('出力', 'number');
   }
-
-  builder(node) {
-    const numSocket = new Rete.Socket('Number value');
-    const out = new Rete.Output('num', 'Number', numSocket);
-
-    node.addOutput(out);
-  }
-
-  worker(node, inputs, outputs) {
-    outputs['num'] = node.data.num;
+  onExecute() {
+    let a = this.getInputData(0);
+    if (a === undefined) {
+      a = 0;
+    }
+    this.setOutputData(0, ++a);
   }
 }
 
 export default {
   mounted() {
-    const editor = new Rete.NodeEditor('test@rete', document.querySelector('#rete'));
-    editor.use(ConnectionPlugin);
-    editor.use(VueRenderPlugin);
+    const graph = new LGraph();
+    const canvas = new LGraphCanvas("#mycanvas", graph);
     
-    const numComponent = new NumComponent();
-    editor.register(numComponent);
+    // デフォルトの登録済みノードをクリア
+    // LiteGraph.registered_node_types = {};
+    // LiteGraph.searchbox_extras = {};
 
-    const engine = new Rete.Engine('demo@0.1.0');
-    engine.register(numComponent);
+    // 自作ノード登録
+    LiteGraph.registerNodeType('自作/test', MyNode);
 
-    editor.on('process nodecreated noderemoved connectioncreated connectionremoved', async () => {
-      await engine.abort();
-      await engine.process(editor.toJSON());
-    });
+    const node_const = LiteGraph.createNode("basic/const");
+    node_const.pos = [200,200];
+    graph.add(node_const);
+    node_const.setValue(4.5);
+
+    var node_watch = LiteGraph.createNode("basic/watch");
+    node_watch.pos = [700,200];
+    graph.add(node_watch);
+    node_const.connect(0, node_watch, 0 );
+    graph.start()
   }
 };
 </script>
