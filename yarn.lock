@@ -3584,6 +3584,23 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
 
+rete-connection-plugin@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/rete-connection-plugin/-/rete-connection-plugin-0.9.0.tgz#3a6df36f55493a5c2ea021ae3147a0f0a6ada6ed"
+  integrity sha512-D+H1yAONBBFYXeMkz0sdpDm76XiqcF2N3FduaqMUqcoThocMaFB2O8TX3nJc76ksuYaLYqo/+OLXTxNa+5HQYQ==
+
+rete-vue-render-plugin@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/rete-vue-render-plugin/-/rete-vue-render-plugin-0.5.0.tgz#c7467f6f931c5af76cd8f4fc2a0b244eef68ac0d"
+  integrity sha512-CEPp9jGDwgu+HVxwC6X/BLVeo3ZJOXnlBQ2GeI7xoszl9o47VHv9yFwCiGQBu2nGu7x4mYmVjsTZ9C10HZW0Ug==
+  dependencies:
+    vue "^2.6.6"
+
+rete@^1.4.3-rc.1:
+  version "1.4.3-rc.1"
+  resolved "https://registry.yarnpkg.com/rete/-/rete-1.4.3-rc.1.tgz#8da83872dfb85447caf22249af87c2846e772943"
+  integrity sha512-yEoXv+w2AXW7czhkLPlxrlk9ovpuXnXsuoCXpZBRf8gQ7jskqv6Rdt0g0SLP8uZEY+pJ/SMDdJIswMCPGS2+BA==
+
 rimraf@^2.5.4, rimraf@^2.6.3:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
@@ -4317,7 +4334,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.5.21, vue@^2.6.11:
+vue@^2.5.21, vue@^2.6.11, vue@^2.6.6:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
