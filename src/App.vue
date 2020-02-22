@@ -1,26 +1,23 @@
 <template>
   <section class="section">
-    <!-- <nested-tree /> -->
-    <!-- <diagram /> -->
-    <LiteGraph />
+    <h2 class="title">BaklavaJS</h2>
+    <baklava-editor :plugin="viewPlugin"></baklava-editor>
   </section>
 </template>
 
 <script>
-import LiteGraph from './components/LiteGraph';
+import { Editor } from '@baklavajs/core';
+import { ViewPlugin } from '@baklavajs/plugin-renderer-vue';
 
 export default {
-  components: {
-    LiteGraph
+  data() {
+    return {
+      editor: new Editor(),
+      viewPlugin: new ViewPlugin()
+    }
+  },
+  created() {
+    this.editor.use(this.viewPlugin);
   }
 };
 </script>
-
-<style>
-html,
-body {
-  height: 100%;
-  position: relative;
-  margin: 0;
-}
-</style>

@@ -25,6 +25,11 @@ Vue.config.warnHandler = function (msg, vm, trace) {
 import NestedTree from './components/NestedTree'
 Vue.component('nested-tree', NestedTree)
 
+// BaklavaJS
+import { BaklavaVuePlugin } from '@baklavajs/plugin-renderer-vue';
+import '@baklavajs/plugin-renderer-vue/dist/styles.css';
+Vue.use(BaklavaVuePlugin);
+
 new Vue({
   el: '#app', // Vueでマウントする要素
   render: h => h(App), // App.vue をレンダリング

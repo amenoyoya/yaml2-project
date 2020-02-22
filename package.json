@@ -10,6 +10,7 @@
     "@babel/preset-env": "^7.7.7",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "baklavajs": "^1.4.5",
     "buefy": "^0.8.9",
     "concurrently": "^5.0.2",
     "css-loader": "^3.4.1",
@@ -24,6 +25,9 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
+  },
+  "electronWebpack": {
+    "whiteListedModules": ["@baklavajs/plugin-renderer-vue"]
   },
   "scripts": {
     "start": "concurrently --kill-others \"webpack --watch --watch-poll\" \"electron main.js\""

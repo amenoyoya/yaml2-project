@@ -657,6 +657,31 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@baklavajs/core@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@baklavajs/core/-/core-1.4.3.tgz#603b9e42143bf752de6be8cf3574a06238c3f342"
+  integrity sha512-RNf53ryy8ED6li692mvBXVkUawEx3Geiqfb+ZCitgy+4KlH5rwhoSaXnYHN0rHh+6OD8dvqlhKt17tI8vzzaYw==
+
+"@baklavajs/plugin-engine@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@baklavajs/plugin-engine/-/plugin-engine-1.4.3.tgz#2db46fefc8b7e03ba8fdf56318041b1bb898100a"
+  integrity sha512-0VYb4cOyCQrKlVLL8n8wXyNKVf+BOSZKfVoYfasHq+PGbM8vRk+baIqFbYU80O/70gn1bXXQEkeOpjHyq96GvQ==
+
+"@baklavajs/plugin-interface-types@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@baklavajs/plugin-interface-types/-/plugin-interface-types-1.4.3.tgz#26ac55e36400d063fb8ca64732c1d1a0fe77eca1"
+  integrity sha512-gVRTFDz+xKpUSYzUj/yv+L8XJMc8wcOMxtqKEaJbZwBduOABv0zaCoqzMjVqYT8MkqjCopSGTmz3azElTKkekA==
+
+"@baklavajs/plugin-options-vue@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@baklavajs/plugin-options-vue/-/plugin-options-vue-1.4.3.tgz#4281c31e440fd71c2b3f014c1f7a4a1a76e5b82e"
+  integrity sha512-x3mCfcnh2Mz/3VyAgOJpeovAoPlIBmlIHjBCCs3QPofQskTGcjEClXBQM50mh5AxfAZosVddWjysWmCc07AZZA==
+
+"@baklavajs/plugin-renderer-vue@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@baklavajs/plugin-renderer-vue/-/plugin-renderer-vue-1.4.3.tgz#094c0c28c9441cd34518f16ae4b7921cca953e5f"
+  integrity sha512-qncwfaZbU4D3wwnIMPfo27l3Ss7pViuQlYTTmkhpZFzpkDjQ4/ipaDPwAM/xXZDDPgmuPaHPqu0HZSv2Ds3Ykg==
+
 "@electron/get@^1.0.1":
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.7.2.tgz#286436a9fb56ff1a1fcdf0e80131fd65f4d1e0fd"
@@ -1002,6 +1027,17 @@ babel-runtime@^6.26.0:
   dependencies:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
+
+baklavajs@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/baklavajs/-/baklavajs-1.4.5.tgz#7138da53997642e1946a11d21598e1f66855d96d"
+  integrity sha512-KIDZipsNHNTEn35S1xeqG+OgjAAVRF6745EXj61oJubXkElWFhJ7hnaRlj9EfvD3MoMoofEtJgEF/OZOfMgT6w==
+  dependencies:
+    "@baklavajs/core" "^1.4.3"
+    "@baklavajs/plugin-engine" "^1.4.3"
+    "@baklavajs/plugin-interface-types" "^1.4.3"
+    "@baklavajs/plugin-options-vue" "^1.4.3"
+    "@baklavajs/plugin-renderer-vue" "^1.4.3"
 
 balanced-match@^1.0.0:
   version "1.0.0"
