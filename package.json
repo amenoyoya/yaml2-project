@@ -14,7 +14,7 @@
     "buefy": "^0.8.9",
     "concurrently": "^5.0.2",
     "css-loader": "^3.4.1",
-    "electron": "^7.1.7",
+    "electron": "^11.5.0",
     "js-yaml": "^3.13.1",
     "litegraph.js": "^0.7.3",
     "rete": "^1.4.3-rc.1",
